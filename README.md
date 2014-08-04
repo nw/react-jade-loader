@@ -23,6 +23,38 @@ Inside your `webpack` config add a loader.
     }
 ```
 
+__Bonus Feature: write multiple react components in a single file__
+
+You can pass the split argument as a querystring argument
+
+```js
+  loaders: [
+    { test: /\.jade$/, loader: "react-jade-loader?split=true" }
+  ]
+```
+
+Inside your react-jade
+
+```jade
+
+  // react: comment
+  .comment
+    h2.commentAuthor= props.author
+    span!= rawMarkup
+
+  // react: list
+  .commentList
+    - props.data.forEach(function(comment, index){
+        Comment(author=comment.author, text=comment.text key=index)
+    - })
+
+```
+
+Comments that start at the beginning of a line with `react: {name}` are split. The name is used to export that chunk of the template.
+
+In the above example the transformed file will export `comment` & `list`.
+
+
 ### License
 
 The MIT License (MIT)
