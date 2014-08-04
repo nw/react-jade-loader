@@ -1,5 +1,5 @@
 
-## React Jade Loader
+# React Jade Loader
 
 A simple loader plugin for [webpack](http://http://webpack.github.io/) to transform [react-jade](https://github.com/ForbesLindesay/react-jade) templates.
 
@@ -7,46 +7,48 @@ This is __alpha__ right now. It requires an experimental version of `react-jade`
 
 
 ```bash
-  npm install https://github.com/nw/react-jade/archive/0.1.2-alpha.tar.gz --save
-  npm install react-jade-loader --save-dev
+npm install https://github.com/nw/react-jade/archive/0.1.2-alpha.tar.gz --save
+npm install react-jade-loader --save-dev
 ```
 
-### Usage
+## Usage
 
 Inside your `webpack` config add a loader.
 
 ```js
-    module: {
-      loaders: [
-        { test: /\.jade$/, loader: "react-jade-loader" }
-      ]
-    }
+module: {
+  loaders: [
+    { test: /\.jade$/, loader: "react-jade-loader" }
+  ]
+}
 ```
 
-__Bonus Feature: write multiple react components in a single file__
+### Bonus Feature
+
+#### Define multiple react components in a single jade file
 
 You can pass the split argument as a querystring argument
 
 ```js
-  loaders: [
-    { test: /\.jade$/, loader: "react-jade-loader?split=true" }
-  ]
+loaders: [
+  { test: /\.jade$/, loader: "react-jade-loader?split=true" }
+]
 ```
 
 Inside your react-jade
 
 ```jade
 
-  // react: comment
-  .comment
-    h2.commentAuthor= props.author
-    span!= rawMarkup
+// react: comment
+.comment
+  h2.commentAuthor= props.author
+  span!= rawMarkup
 
-  // react: list
-  .commentList
-    - props.data.forEach(function(comment, index){
-        Comment(author=comment.author, text=comment.text key=index)
-    - })
+// react: list
+.commentList
+  - props.data.forEach(function(comment, index){
+      Comment(author=comment.author, text=comment.text key=index)
+  - })
 
 ```
 
@@ -55,7 +57,7 @@ Comments that start at the beginning of a line with `react: {name}` are split. T
 In the above example the transformed file will export `comment` & `list`.
 
 
-### License
+## License
 
 The MIT License (MIT)
 
